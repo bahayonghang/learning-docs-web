@@ -1,0 +1,33 @@
+{
+  "name": "llm-atlas",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "export:book": "node --import tsx scripts/export-book.ts",
+    "check": "npm run export:book && npm test && npm run build",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "dompurify": "3.4.17",
+    "katex": "0.19.1",
+    "lucide": "1.73.0",
+    "marked": "18.2.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.1",
+    "@types/katex": "^0.16.8",
+    "@types/node": "^26.6.6",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vite": "8.3.8"
+  }
+}
