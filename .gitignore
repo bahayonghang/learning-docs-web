@@ -1,0 +1,7 @@
+.agents/
+.claude/
+.codex/
+.cursor/
+.omp/
+.grok/
+ref/
