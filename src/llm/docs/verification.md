@@ -7,6 +7,7 @@
 ## 已执行的本地检查
 
 - 在 Node.js 24.22.1、npm 11.9.0 环境按本目录依赖安装并执行检查。
+- `npm run check` 通过：19/19 项数值与内容测试、教材导出、严格 TypeScript 检查和生产构建。
 - 数值内核覆盖点积、形状错误、softmax 稳定性、零温度、交叉熵、梯度收敛/过冲、激活、注意力、因果屏蔽、top-p、固定种子、BPE 还原、KV、LoRA 和词面检索。
 - 内容检查覆盖 18 个章节 ID、六阶段先修关系、双语正文/反馈/来源、实际图片文件、KaTeX 公式和教材导出。
 - 独立 DOM 检查渲染十个实验的两种语言，验证控制标签、单步、重置、遮罩、空输入、HTML 转义、种子复现及计时器/监听器释放。
@@ -17,9 +18,11 @@
 
 ## 浏览器验证
 
-当前本地执行环境中的 Chromium 启动失败，错误为 `socket() failed: Operation not permitted`。云浏览器无法连接该执行环境的 loopback 开发地址。因此上述本地检查不包含浏览器像素布局验收，也没有将 jsdom 结果写成真实浏览器结果。
+**真实 Chromium 验证已通过。** [GitHub Actions 运行 43799536971](https://github.com/bahayonghang/learning-docs-web/actions/runs/43799536971) 在 2026-11-16 UTC 对提交 `135e17ffd2e75dc0e39c886e2233aecb69863d06` 执行：19/19 项数值与内容测试通过，静态构建成功；Playwright **21 项通过，1 项跳过，0 项失败**，耗时 25.5 秒。跳过项是桌面项目中的手机专用导航测试，同一测试在手机项目中通过。
 
-仓库提供 Playwright 套件和 GitHub Actions 验证工作流，用于在可启动 Chromium 的 runner 上执行生产预览检查：
+本地执行环境中的 Chromium 因 `socket() failed: Operation not permitted` 无法启动，云浏览器也无法连接该执行环境的 loopback 地址。最终浏览器验收使用上面的 GitHub runner，未把 jsdom 结果当作真实浏览器结果。
+
+Playwright 在生产预览上检查：
 
 - 桌面：1440 × 1000；手机：390 × 844。
 - 18 课和十个实验的两种语言路由。
@@ -29,7 +32,18 @@
 - 侧栏活动状态、手机抽屉焦点、主题与字号持久化。
 - 浏览器异常、控制台错误和本地静态资源失败。
 
-套件已完成测试发现检查。真实 runner 的最终结果、运行链接与截图验收将在 CI 执行后补入本记录。
+共访问 18 课 × 两种语言 × 两种尺寸的 72 个课程视图，以及十个实验 × 两种语言 × 两种尺寸的 40 个实验视图。所有检查均以实际页面、控制与资源为依据。
+
+已人工复核 CI 的中英文桌面和手机首页、中文注意力课程与实验截图。未见文字遮挡、横向溢出、图片拉伸、语言错配或控件挤压。代表截图保存在仓库中；首页桌面图裁取顶部 1100 像素，其他图保留完整页面，之后转换为 WebP，未修改页面内容：
+
+| 页面 | 截图 |
+|---|---|
+| 中文桌面首页 | [home-desktop-zh.webp](screenshots/home-desktop-zh.webp) |
+| 英文桌面首页 | [home-desktop-en.webp](screenshots/home-desktop-en.webp) |
+| 中文手机首页 | [home-mobile-zh.webp](screenshots/home-mobile-zh.webp) |
+| 中文注意力实验 | [lab-attention-zh.webp](screenshots/lab-attention-zh.webp) |
+
+原始 CI 截图包名为 `llm-atlas-browser-results`，artifact ID 为 `14195329356`；下载 ZIP 的 SHA-256 为 `3984aa8d4202f7d38bef00418557c27af33c64e785e4a8908f63af8401577a2f`。CI 保留期之外可使用以上仓库截图复核已验收的界面。
 
 ## 图像检查
 

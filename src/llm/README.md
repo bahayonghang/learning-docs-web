@@ -6,7 +6,7 @@
 
 **6 个阶段 · 18 节双语课程 · 10 个计算实验 · 7 对原创中英配图（14 张）· 30 个术语 · 20 项原始资料**
 
-![注意力：在上下文中寻找有用信息](public/images/attention-zh.webp)
+![LLM Atlas 中文首页，真实浏览器截图](docs/screenshots/home-desktop-zh.webp)
 
 ## 快速运行
 
@@ -112,7 +112,7 @@ npm run build
 npm run test:e2e
 ```
 
-套件在桌面和手机尺寸上验证双语路由、图片、公式、交互与溢出。GitHub Actions 工作流位于仓库根目录 `.github/workflows/llm-atlas.yml`，保留截图与失败追踪。实际执行情况见 [verification.md](docs/verification.md)，不能用数值测试通过替代浏览器验收。
+套件在桌面和手机尺寸上验证双语路由、图片、公式、交互与溢出。GitHub Actions 工作流位于仓库根目录 `.github/workflows/llm-atlas.yml`，保留截图与失败追踪。[首次真实浏览器验收](https://github.com/bahayonghang/learning-docs-web/actions/runs/43799536971)结果为 21 项通过、1 项桌面不适用的手机测试跳过；手机项目中的该项测试通过。截图、数值与内容测试结果见 [verification.md](docs/verification.md)。
 
 ## 静态发布
 

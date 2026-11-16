@@ -6,7 +6,7 @@ Begin with vectors, probability, derivatives and a single neuron. Use small nume
 
 **6 stages · 18 bilingual lessons · 10 calculated experiments · 7 paired visual guides (14 images) · 30 glossary terms · 20 primary sources**
 
-![Attention: finding useful information in context](public/images/attention-en.webp)
+![LLM Atlas English homepage, captured in a real browser](docs/screenshots/home-desktop-en.webp)
 
 ## Run locally
 
@@ -102,7 +102,7 @@ npm run build
 npm run test:e2e
 ```
 
-The suite checks bilingual routes, images, formulas, interactions and overflow at desktop and mobile sizes. The root `.github/workflows/llm-atlas.yml` workflow retains screenshots and failure traces. See [verification.md](docs/verification.md) for actual results and environment limits; numerical tests are not a substitute for rendered browser checks.
+The suite checks bilingual routes, images, formulas, interactions and overflow at desktop and mobile sizes. The root `.github/workflows/llm-atlas.yml` workflow retains screenshots and failure traces. The [first real-browser acceptance run](https://github.com/bahayonghang/learning-docs-web/actions/runs/43799536971) passed 21 tests and skipped one mobile-only test in the desktop project; that test passed in the mobile project. See [verification.md](docs/verification.md) for screenshots and numerical/content test results.
 
 ## Static hosting
 
