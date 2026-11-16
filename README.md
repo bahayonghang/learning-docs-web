@@ -12,7 +12,7 @@
 |---|---|---|
 | [`src/rl`](src/rl/README.md) | 强化学习 | **已迁入 RL Atlas**：双语教程、数学计算器、算法实验、水泥烧成工作台、图解与测试；在本目录独立构建。 |
 | [`src/power-trading`](src/power-trading/README.md) | 电力交易 | 目录已指定。站点尚未放入。 |
-| [`src/llm`](src/llm/README.md) | 大语言模型 | 目录已指定。站点尚未放入。 |
+| [`src/llm`](src/llm/README.md) | 大语言模型 | **已创建 LLM Atlas**：从数学与神经网络到 Transformer、训练、推理与应用的双语图文课程、计算实验和原创配图；在本目录独立构建。 |
 
 表中的一行只表示位置。目录里还没有课程、实验或页面时，就把它当作尚未发布的站点。
 
