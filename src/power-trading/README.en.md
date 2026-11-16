@@ -4,6 +4,12 @@
 
 A complete Chinese/English course connecting mathematics and neural networks to electricity systems, markets, forecasting, procurement, settlement, and industrial applications. Warm light/dark themes, generated concept illustrations, and local visual experiments carry one industrial electricity story through the material.
 
+## Interface preview
+
+![English overview and progressive learning path](docs/screenshots/home-en-desktop.webp)
+
+[Mobile lesson](docs/screenshots/lesson-01-en-mobile.webp) · [Clearing experiment](docs/screenshots/lab-clearing-zh-desktop.webp) · [Dark reading mode](docs/screenshots/lesson-dark-en-desktop.webp) · [All reviewed screenshots](docs/screenshots/README.md)
+
 ## Run locally
 
 Use **Node.js 22.12 or newer**. This site has its own toolchain; the repository root has no shared development server.

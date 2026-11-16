@@ -4,6 +4,12 @@
 
 从数学与神经网络起步，通过电力系统、市场机制、预测和决策，理解一位工业用户或售电从业者怎样把信息变成可解释的采购安排。课程采用中文与英文完整双语，使用暖橙浅色/深色主题、生成式概念插图和本地计算实验。
 
+## 界面预览
+
+![中文首页与循序渐进的学习路径](docs/screenshots/home-zh-desktop.webp)
+
+[手机课程正文](docs/screenshots/lesson-01-zh-mobile.webp) · [报价出清实验](docs/screenshots/lab-clearing-zh-desktop.webp) · [手机储能实验](docs/screenshots/lab-storage-zh-mobile.webp) · [全部验收截图](docs/screenshots/README.md)
+
 ## 本地启动
 
 需要 **Node.js 22.12 或更新版本**。本目录独立运行，仓库根目录没有共用开发服务器。

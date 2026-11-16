@@ -17,7 +17,21 @@ Local Chromium could not start because the execution environment rejected its pr
 
 The repository workflow runs the production site in a real Chromium browser on an Ubuntu GitHub runner. Its test suite covers 24 lessons × 2 languages × 2 sizes (96 lesson views) and 12 labs × 2 languages × 2 sizes (48 lab views), plus controls, numerical examples, animation lifecycle, image downloads, book downloads, search, categories, focus, preferences, and routing. Screenshots are saved to `test-results/screenshots` and retained as a workflow artifact.
 
-真实浏览器验收由仓库CI执行。首次结果尚待运行；完成后本记录会补充对应工作流链接和实际通过情况。
+## Recorded browser result / 真实浏览器结果
+
+**2026-11-16 UTC — 26/26 cases passed in 40.7 seconds** on the GitHub Ubuntu runner, using Node.js 22 and real Chromium. The same job also passed locked installation, both book exports, all 22 numerical/content tests, strict TypeScript checking, and the production build.
+
+- [Successful workflow run 43803811174](https://github.com/bahayonghang/learning-docs-web/actions/runs/43803811174)
+- Application/test commit: [`1cb7dcc3fb52f189f4d6904571a3ae23f6c49eff`](https://github.com/bahayonghang/learning-docs-web/commit/1cb7dcc3fb52f189f4d6904571a3ae23f6c49eff)
+- Verified coverage: **96 lesson views** (24 lessons × 2 languages × 2 sizes), **48 lab views** (12 labs × 2 languages × 2 sizes), numeric control changes, animation play/pause/reset/teardown, reduced motion, image/book downloads, search/filtering, drawer focus, preferences, and unknown-route recovery.
+- Eight representative screenshots were downloaded from that run and visually reviewed. [Permanent screenshot index](screenshots/README.md). They are actual browser captures, converted from PNG to WebP at the original dimensions for repository size.
+- The workflow also retained the independently built static site as the `power-trading-atlas-site` artifact.
+
+首次CI发现手机课程正文被表格的固有宽度撑开，造成整页横向溢出。已将阅读区明确约束为可用列宽，同时保留长公式和表格各自的局部滚动，没有裁切正文或放宽验收阈值。修复后的中英文24课全部通过手机宽度检查，8张实际页面截图已逐张检查；首页图标也已补齐。
+
+The first CI run caught a genuine mobile reader overflow. An auto-width Grid item with auto inline margins inherited the table's minimum content width. Setting the reader to `width: 100%; min-width: 0` confines it to its grid track; existing formula/table scrollers remain available. The second run passed every original assertion. No test threshold was relaxed and no page-wide clipping was added.
+
+The saved screenshots and this record document the verified application/test commit above; subsequent documentation-only commits add those records without changing application behavior.
 
 ## Reproduce / 复现
 
