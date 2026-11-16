@@ -1,0 +1,35 @@
+name: RL Atlas verification
+
+on:
+  pull_request:
+    paths:
+      - 'src/rl/**'
+      - '.github/workflows/rl-atlas.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: src/rl
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: src/rl/package-lock.json
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Run numerical and content tests
+        run: npm test
+      - name: Export bilingual course books
+        run: npm run export:book
+      - name: Typecheck and build Vite site
+        run: npm run build

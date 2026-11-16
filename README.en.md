@@ -4,13 +4,13 @@
 
 This repository holds browser sites for learning. Reinforcement learning, power trading, large language models, and later topics each get one stable directory under `src/`. The repository root is the index and the shared conventions. A topic's pages, toolchain, and notes live in its own directory.
 
-The house style follows RL Atlas in [bahayonghang/rl-learning](https://github.com/bahayonghang/rl-learning) (`rl-learning-web/`): paired Chinese and English editions, a problem before a definition, figures that come from the calculation on the page, citations to primary sources, and an explicit limit on what a simplified model shows. Cement-kiln contracts, the five-layer safety gate, and experiment baselines stay in that repository's `AGENTS.md`.
+The house style follows the migrated [RL Atlas](src/rl/README.en.md), originally developed in [bahayonghang/rl-learning](https://github.com/bahayonghang/rl-learning) (`rl-learning-web/`): paired Chinese and English editions, a problem before a definition, figures that come from the calculation on the page, citations to primary sources, and an explicit limit on what a simplified model shows. Cement-kiln contracts, the five-layer safety gate, and experiment baselines stay in that repository's `AGENTS.md`.
 
 ## Designated directories
 
 | Path | Topic | Status |
 |---|---|---|
-| [`src/rl`](src/rl/README.md) | Reinforcement learning | Designated. No site files yet. RL Atlas remains in [rl-learning](https://github.com/bahayonghang/rl-learning) at `rl-learning-web/`. |
+| [`src/rl`](src/rl/README.md) | Reinforcement learning | **RL Atlas migrated**: bilingual curriculum, calculators, experiments, kiln workbench, figures, tests and independent build. |
 | [`src/power-trading`](src/power-trading/README.md) | Power trading | Designated. No site files yet. |
 | [`src/llm`](src/llm/README.md) | Large language models | Designated. No site files yet. |
 
@@ -55,6 +55,6 @@ When you change a site that already exists, keep its published chapter IDs, rout
 
 | Repository | Responsibility |
 |---|---|
-| [bahayonghang/rl-learning](https://github.com/bahayonghang/rl-learning) | Process-industry reinforcement-learning research, and the finished RL Atlas site in `rl-learning-web/`. |
-| `src/rl/` here | Designated home for a reinforcement-learning learning site. Adopt a kiln contract only when this directory takes that contract on purpose. |
+| [bahayonghang/rl-learning](https://github.com/bahayonghang/rl-learning) | Process-industry RL research, historical RL Atlas source and original industrial contracts. |
+| [`src/rl/`](src/rl/README.en.md) here | RL Atlas bilingual site, interactive examples, assets, tests and independent toolchain; kiln examples remain simulations under their documented safety boundaries. |
 | `src/power-trading/` and `src/llm/` here | Learning sites for power trading and language models. They do not inherit kiln state, action, or safety-gate parameters. |

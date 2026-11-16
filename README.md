@@ -4,13 +4,13 @@
 
 这个仓库存放可在浏览器里学习的站点。强化学习、电力交易、大语言模型等主题各占 `src/` 下一个稳定目录。仓库根目录是索引和约定；某个主题的网页、工具链和说明都放进对应目录。
 
-站点写法参照 [bahayonghang/rl-learning](https://github.com/bahayonghang/rl-learning) 里的 RL Atlas（`rl-learning-web/`）：中英双语、先讲清问题再给定义、演示数字来自当页计算、出处指向原始资料，并写明简化模型没有覆盖的部分。该仓库里的水泥烧成契约、五层安全门和实验基线仍以它自己的 `AGENTS.md` 为准。
+站点写法参照本仓库 [src/rl](src/rl/README.md) 中已迁入的 RL Atlas（原始项目为 [bahayonghang/rl-learning](https://github.com/bahayonghang/rl-learning) 的 `rl-learning-web/`）：中英双语、先讲清问题再给定义、演示数字来自当页计算、出处指向原始资料，并写明简化模型没有覆盖的部分。该仓库里的水泥烧成契约、五层安全门和实验基线仍以它自己的 `AGENTS.md` 为准。
 
 ## 指定目录
 
 | 目录 | 主题 | 现状 |
 |---|---|---|
-| [`src/rl`](src/rl/README.md) | 强化学习 | 目录已指定。站点尚未放入。RL Atlas 仍在 [rl-learning](https://github.com/bahayonghang/rl-learning) 的 `rl-learning-web/`。 |
+| [`src/rl`](src/rl/README.md) | 强化学习 | **已迁入 RL Atlas**：双语教程、数学计算器、算法实验、水泥烧成工作台、图解与测试；在本目录独立构建。 |
 | [`src/power-trading`](src/power-trading/README.md) | 电力交易 | 目录已指定。站点尚未放入。 |
 | [`src/llm`](src/llm/README.md) | 大语言模型 | 目录已指定。站点尚未放入。 |
 
@@ -55,6 +55,6 @@ src/<slug>/
 
 | 仓库 | 职责 |
 |---|---|
-| [bahayonghang/rl-learning](https://github.com/bahayonghang/rl-learning) | 流程工业强化学习研究，以及已经完成的 RL Atlas 网站 `rl-learning-web/`。 |
-| 本仓库 `src/rl/` | 强化学习学习站点的指定位置。把 Atlas 或后续站点放进来时，再逐条采纳需要的工业契约。 |
+| [bahayonghang/rl-learning](https://github.com/bahayonghang/rl-learning) | 流程工业强化学习研究、原版 RL Atlas 的历史来源及原项目的工业契约。 |
+| 本仓库 [`src/rl/`](src/rl/README.md) | RL Atlas 的双语学习站点、交互、静态资源、测试与独立构建入口；工业场景仍遵循模拟推演与安全边界。 |
 | 本仓库 `src/power-trading/`、`src/llm/` | 电力交易和语言模型的学习站点。不继承烧成系统的状态、动作或安全门参数。 |
