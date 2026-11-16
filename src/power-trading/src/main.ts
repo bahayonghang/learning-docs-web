@@ -29,7 +29,7 @@ function shell(): void {
   app.innerHTML = `
     <a class="skip-link" href="#page">${t('跳到主要内容', 'Skip to content')}</a>
     <aside class="sidebar" id="sidebar" aria-label="${t('学习导航', 'Learning navigation')}">
-      <a class="brand" href="#/" aria-label="Power Atlas"><span class="brand-mark">${icon('Network')}</span><span>Power Atlas<small>${t('电力交易 · 交互式学习', 'An interactive learning atlas')}</small></span></a>
+      <a class="brand" href="#/" aria-label="Power Atlas"><span class="brand-mark">${icon('Zap')}</span><span>Power Atlas<small>${t('电力交易 · 交互式学习', 'An interactive learning atlas')}</small></span></a>
       <div class="sidebar-scroll">
         <div class="nav-label">${t('你的学习地图', 'YOUR LEARNING MAP')}</div>
         <nav class="main-nav">

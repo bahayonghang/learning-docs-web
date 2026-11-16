@@ -35,8 +35,24 @@ async function setLocale(page: Page, locale: Locale) {
 }
 async function noOverflow(page: Page) {
   const sizes = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, document: document.documentElement.scrollWidth, body: document.body.scrollWidth }));
-  expect(sizes.document, `Document overflow at ${page.url()}`).toBeLessThanOrEqual(sizes.viewport + 1);
-  expect(sizes.body, `Body overflow at ${page.url()}`).toBeLessThanOrEqual(sizes.viewport + 1);
+  const offenders = sizes.document > sizes.viewport + 1 || sizes.body > sizes.viewport + 1
+    ? await page.evaluate(() => {
+      const viewport = document.documentElement.clientWidth;
+      return [...document.querySelectorAll<HTMLElement>('#page, #page *')]
+        .map(node => ({ node, rect: node.getBoundingClientRect() }))
+        .filter(({ rect }) => rect.width > 0 && (rect.right > viewport + 1 || rect.left < -1))
+        .slice(0, 12)
+        .map(({ node, rect }) => ({
+          element: `${node.tagName.toLowerCase()}${node.id ? '#' + node.id : ''}${[...node.classList].slice(0, 2).map(x => '.' + x).join('')}`,
+          left: Math.round(rect.left), right: Math.round(rect.right), width: Math.round(rect.width),
+          clientWidth: node.clientWidth, scrollWidth: node.scrollWidth,
+          overflowX: getComputedStyle(node).overflowX,
+          text: node.textContent?.replace(/\s+/g, ' ').slice(0, 80),
+        }));
+    }) : [];
+  const detail = offenders.length ? `\nFirst overflowing elements: ${JSON.stringify(offenders)}` : '';
+  expect(sizes.document, `Document overflow at ${page.url()}${detail}`).toBeLessThanOrEqual(sizes.viewport + 1);
+  expect(sizes.body, `Body overflow at ${page.url()}${detail}`).toBeLessThanOrEqual(sizes.viewport + 1);
 }
 async function loadedImages(page: Page, selector = '#page img', locale?: Locale) {
   for (const image of await page.locator(selector).all()) {
@@ -49,8 +65,8 @@ async function loadedImages(page: Page, selector = '#page img', locale?: Locale)
     }), { message: `Image must decode: ${await image.getAttribute('src')}` }).toBe(true);
   }
 }
-async function capture(page: Page, info: TestInfo, name: string, fullPage = false) {
-  await page.evaluate(async () => { await document.fonts.ready; window.scrollTo(0, 0); });
+async function capture(page: Page, info: TestInfo, name: string, fullPage = false, preserveScroll = false) {
+  await page.evaluate(async keepPosition => { await document.fonts.ready; if (!keepPosition) window.scrollTo(0, 0); }, preserveScroll);
   const directory = resolve('test-results/screenshots');
   await mkdir(directory, { recursive: true });
   const path = resolve(directory, `${name}-${info.project.name}.png`);
@@ -71,7 +87,7 @@ async function finishSteps(page: Page, count: number) {
   for (let i = 0; i < count; i++) await page.locator('[data-action="step"]').click();
 }
 
-// Exactly six representative screenshots are emitted across desktop and mobile projects.
+// Eight representative screenshots include both mobile lesson editions for overflow review.
 test('home renders both editions with decoded illustrations and responsive layout', async ({ page }, info) => {
   await visit(page);
   for (const locale of ['zh', 'en'] as const) {
@@ -86,7 +102,7 @@ test('home renders both editions with decoded illustrations and responsive layou
 });
 
 for (const locale of ['zh', 'en'] as const) {
-  test(`all 24 lessons render prose, mathematics, localized figures and navigation (${locale})`, async ({ page }) => {
+  test(`all 24 lessons render prose, mathematics, localized figures and navigation (${locale})`, async ({ page }, info) => {
     test.setTimeout(180_000);
     expect(chapters).toHaveLength(24);
     await visit(page, 'chapter/01');
@@ -101,6 +117,9 @@ for (const locale of ['zh', 'en'] as const) {
         await expect(page.locator('#page .katex-error')).toHaveCount(0);
         await expect(page.locator('.lesson-figure img')).toHaveCount(1);
         await loadedImages(page, '.lesson-figure img', locale);
+        if (chapter.id === '01' && info.project.name === 'mobile') {
+          await capture(page, info, `lesson-01-${locale}`, false, true);
+        }
         const active = page.locator(`.chapter-nav [data-chapter="${chapter.id}"]`);
         await expect(active).toHaveAttribute('aria-current', 'page');
         expect(await active.evaluate(node => node.closest('details')?.open)).toBe(true);

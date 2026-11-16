@@ -246,7 +246,9 @@ p { text-wrap: pretty; }
 .reader-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 26px; gap: 14px; }
 .reader-toolbar > div { display: flex; gap: 7px; }
 .reader-layout { display: grid; grid-template-columns: minmax(0,1fr) 190px; gap: 40px; }
-.reader { min-width: 0; }
+/* An auto-width grid item with auto inline margins can use its table/math min-content width.
+   Fill the available grid track; wide formulas and tables keep their existing local scrollers. */
+.reader { width: 100%; min-width: 0; }
 .lesson-header { border-bottom: 1px solid var(--line); padding-bottom: 27px; margin-bottom: 24px; }
 .lesson-heading-line { display: flex; align-items: flex-start; gap: 15px; margin: 18px 0 17px; }
 .lesson-heading-line > span { font: 37px/1.5 var(--serif); color: var(--accent); opacity: .7; }
