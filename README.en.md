@@ -11,7 +11,7 @@ The house style follows the migrated [RL Atlas](src/rl/README.en.md), originally
 | Path | Topic | Status |
 |---|---|---|
 | [`src/rl`](src/rl/README.md) | Reinforcement learning | **RL Atlas migrated**: bilingual curriculum, calculators, experiments, kiln workbench, figures, tests and independent build. |
-| [`src/power-trading`](src/power-trading/README.md) | Power trading | Designated. No site files yet. |
+| [`src/power-trading`](src/power-trading/README.md) | Power trading | **Power Trading Atlas implemented**: 24 bilingual lessons from mathematics and neural networks, 12 visual experiments, 16 generated illustrations, and Chinese/Anhui primary rule sources; independent build. |
 | [`src/llm`](src/llm/README.md) | Large language models | Designated. No site files yet. |
 
 A row records a location. Until a directory contains its curriculum, experiments, or pages, treat that site as unpublished.
